@@ -1,16 +1,16 @@
 # Defector - A Deferred Factory Object
 
-Defector allows creating deferred objects with a many-to-many relationship between queues and resolvers.
+Defector allows creating deferred objects with a many-to-many relationship between queues and triggers.
 By creating this type of event map there shouldn't be a need for callback insanity.
 Here's an example:
 
 ```javascript
 var dobj = defactor();
 
-dobj.add( 'done', 'resolve' )
-	.add( 'fail', 'reject' )
-	.add( 'always', 'resolve' )
-	.add( 'always', 'reject' );
+dobj.add( 'resolve', 'done' )
+	.add( 'reject', 'fail' )
+	.add( 'resolve', 'always' )
+	.add( 'reject', 'always' );
 
 var defer = dobj.create();
 

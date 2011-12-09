@@ -2,9 +2,9 @@ var defactor = require( '../lib/defactor.js' ).defactor
 	log = console.log;
 
 var defer = defactor( true )
-	.add( 'done', 'resolve' )
-	.add( 'done', 'always' )
-	.add( 'happy', 'resolve' )
+	.add( 'resolve', 'done' )
+	.add( 'always', 'done' )
+	.add( 'resolve', 'happy' )
 	.create();
 
 defer.done(function() { log( 'done0' ); })
