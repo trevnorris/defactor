@@ -5,16 +5,18 @@ By creating this type of event map there shouldn't be a need for callback insani
 Here's an example:
 
 ```javascript
-var dobj = defactor();
-
-dobj.add( 'resolve', 'done' )
+// generate a new deferred object with custom event triggers and function queues
+var defer = defactor().add( 'resolve', 'done' )
 	.add( 'reject', 'fail' )
 	.add( 'resolve', 'always' )
-	.add( 'reject', 'always' );
+	.add( 'reject', 'always' )
+	.create();
 
-var defer = dobj.create();
+// create an instance of the new deferred
+var myDef0 = new defer();  // or just `defer()`
 
-defer.done(function() {
+// queue up functions to complete
+myDef0.done(function() {
 		console.log( 'done' );
 	})
 	.fail(function() {
@@ -24,14 +26,13 @@ defer.done(function() {
 		console.log( 'always' );
 	});
 
-defer.resolve();    // LOG: "done"; "always"
+myDef0.resolve();    // LOG: "done"; "always"
 ```
 
 ## Roadmap:
 
 * add the `promise()` method to each deferred
 * allow `addWith()` to create queue/resolver pairs that accept a new context
-* `create()` should return an uninstantiated deferred
 * add `always()` method to create a queue that is always fired
 * add `then()` that accepts two queues and resolvers
 
