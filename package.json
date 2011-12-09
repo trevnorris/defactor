@@ -1,0 +1,12 @@
+{
+	"name" : "defactor",
+	"version" : "0.0.1",
+	"description" : "A deferred factory object",
+	"author" : "Trevor Norris <trev.norris@gmail.com>",
+	"main" : "./lib/defactor.js",
+	"repository" : {
+		"type" : "git",
+		"url" : "https://github.com/trevnorris/defactor.git"
+	},
+	"engine" : "node >= 0.4.0"
+}
