@@ -31,7 +31,6 @@ myDef0.resolve();    // LOG: "done"; "always"
 
 ## Roadmap:
 
-* allow `addWith()` to create queue/resolver pairs that accept a new context
 * add `always()` method to create a queue that is always fired
 * add `then()` that accepts two queues and resolvers
 
