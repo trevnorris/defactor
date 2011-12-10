@@ -2,26 +2,32 @@ var defactor = require( '../lib/defactor.js' ).defactor
 	log = console.log;
 
 
-var defer = defactor( true )
+var Defer = defactor( true )
 	.add( 'resolve', 'done' )
+	.add( 'resolve', 'always' )
 	.add( 'reject', 'fail' )
+	.add( 'reject', 'always' )
+	.add( 'sometimes', 'done' )
 	.create();
 
 
-var obj = (new defer());
+var obj0 = new Defer( true );
 
-obj.done(function() { log( 'done' ); })
-	.fail(function() { log( 'fail' ); });
+obj0.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
+	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); })
+	.always(function( a ) { log( 'obj0 : ' + a + ' : always' ); });
 
-var obj0 = (new defer( true ));
+var obj1 = new Defer();
 
-obj0.done(function() { log( 'what?' ); })
-	.fail(function() { log( 'huh?' ); });
+obj1.done(function( a ) { log( 'obj1 : ' + a + ' : done' ); })
+	.fail(function( a ) { log( 'obj1 : ' + a + ' : fail' ); })
+	.always(function( a ) { log( 'obj1 : ' + a + ' : always' ); });
 
-obj0.reject().resolve();
+
+obj1.reject([ 'reject' ]).resolve([ 'resolve' ]).sometimes([ 'sometimes' ]);
 log( '---------' );
-obj.resolve().reject();
+obj0.resolve([ 'resolve' ]).reject([ 'reject' ]).sometimes([ 'sometimes' ]);
 log( '---------' );
-log( obj instanceof defer );
+log( obj0 instanceof Defer );
 
 return;
