@@ -11,15 +11,17 @@ var Defer = defactor( true )
 	.create();
 
 
-var obj0 = new Defer( true );
+var obj0 = new Defer( true ),
+	obj0promise = obj0.promise();
 
-obj0.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
+obj0promise.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
 	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); })
 	.always(function( a ) { log( 'obj0 : ' + a + ' : always' ); });
 
-var obj1 = new Defer();
+var obj1 = new Defer(),
+	obj1promise = obj1.promise();
 
-obj1.done(function( a ) { log( 'obj1 : ' + a + ' : done' ); })
+obj1promise.done(function( a ) { log( 'obj1 : ' + a + ' : done' ); })
 	.fail(function( a ) { log( 'obj1 : ' + a + ' : fail' ); })
 	.always(function( a ) { log( 'obj1 : ' + a + ' : always' ); });
 
@@ -29,5 +31,8 @@ log( '---------' );
 obj0.resolve([ 'resolve' ]).reject([ 'reject' ]).sometimes([ 'sometimes' ]);
 log( '---------' );
 log( obj0 instanceof Defer );
+log( obj1 instanceof Defer );
+
+log( obj0.promise());
 
 return;
