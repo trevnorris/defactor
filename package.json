@@ -1,6 +1,6 @@
 {
 	"name" : "defactor",
-	"version" : "0.0.3",
+	"version" : "0.0.4",
 	"description" : "A deferred factory object",
 	"author" : "Trevor Norris <trev.norris@gmail.com>",
 	"main" : "./lib/defactor.js",

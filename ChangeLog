@@ -1,3 +1,8 @@
+2011.12.09, Version 0.0.4, 29ad8e4
+----------------------------------
+
+* Fix bug where clearQueue was actually clearing the trigger/queue map
+
 2011.12.09, Version 0.0.3, 440af8b
 ----------------------------------
 
