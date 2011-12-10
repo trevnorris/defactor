@@ -1,0 +1,29 @@
+2011.12.09, Version 0.0.3, 440af8b
+----------------------------------
+
+* Defactor:
+	* guid is now referenced by _key
+	* only uses map object to store trigger/queue relationships
+
+* Defactor.fn.create returns an uninstantiated deferred which can be used multiple times
+
+* Generated deferreds use the private data object to store function queues
+
+* Queue persistance argument is now passed to generated deferred
+
+2011.12.09, Version 0.0.2, 02d3b01
+----------------------------------
+
+* Defactor.fn.add( trigger, queue ): order of arguments has been swapped
+
+2011.12.09, Version 0.0.1, f95ea0c
+---------------------------
+
+* Defactor( [persist] ):
+	* Accepts boolean argument to determine whether queue is cleared or
+	retained (default is false)
+	* Creates guid for use in the private map and data objects
+
+* Defactor.fn:
+	* add( queue, trigger ): add a new queue/trigger pair to the map
+	* create(): generate a new initialized deferred object
