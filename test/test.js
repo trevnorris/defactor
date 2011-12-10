@@ -25,7 +25,7 @@ obj1promise.done(function( a ) { log( 'obj1 : ' + a + ' : done' ); })
 
 obj1.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]);
 log( '---------' );
-obj0.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]).resolveWith({ hi : 'all' }, ['resolveWith']);
+obj0.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]).resolveWith({ hi : 'With' }, ['resolveWith']);
 log( '---------' );
 log( obj0 instanceof Defer );
 log( obj1 instanceof Defer );
