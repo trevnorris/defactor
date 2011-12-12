@@ -4,11 +4,11 @@ var defactor = require( '../lib/defactor.js' ).defactor
 
 var Defer = defactor( true )
 	.add( 'resolve', 'done' )
-	.add( 'resolve', 'always' )
 	.add( 'sometimes', 'done' )
+	.add( 'reject', 'fail' )
 	.addWith( 'resolveWith', 'done' )
+	.addAlways( 'always' )
 	.create();
-
 
 var obj0 = new Defer( true ),
 	obj0promise = obj0.promise();
@@ -27,9 +27,8 @@ obj1.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]);
 log( '---------' );
 obj0.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]).resolveWith({ hi : 'With' }, ['resolveWith']);
 log( '---------' );
-log( obj0 instanceof Defer );
-log( obj1 instanceof Defer );
+log( obj0 );
 log( '---------' );
-log( obj0.promise());
+log( obj0promise );
 
 return;
