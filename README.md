@@ -57,3 +57,5 @@ $( '.selector' )
 * `addAlways()`: add queue that will always be fired, and fired first
 
 * All generated deferreds have a `promise()` method that will return a promise object
+
+* Events will persist after triggered if `true` is passed when instantiating the deferred
