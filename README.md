@@ -28,9 +28,3 @@ myDef0.done(function() {
 
 myDef0.resolve();    // LOG: "done"; "always"
 ```
-
-## Roadmap:
-
-* add `always()` method to create a queue that is always fired
-* add `then()` that accepts two queues and resolvers
-

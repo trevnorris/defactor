@@ -1,3 +1,8 @@
+2011.12.12, Version 0.0.5, 37bbfc6
+----------------------------------
+
+* Create queues that will always fire using addAlways()
+
 2011.12.09, Version 0.0.4, 29ad8e4
 ----------------------------------
 
