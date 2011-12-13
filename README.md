@@ -59,3 +59,11 @@ $( '.selector' )
 * All generated deferreds have a `promise()` method that will return a promise object
 
 * Events will persist after triggered if `true` is passed when instantiating the deferred
+
+## Roadmap
+
+* (v0.1.0) Cleanup of map/data model.
+
+* (v0.1.1) Make queue execution non-blocking
+
+* (v0.1.2) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
