@@ -6,6 +6,7 @@ var Defer = defactor( true )
 	.add( 'resolve', 'done' )
 	.add( 'sometimes', 'done' )
 	.add( 'reject', 'fail' )
+	.addAlways( 'always' )
 	.create();
 
 var obj0 = new Defer( true ),
@@ -14,7 +15,8 @@ var obj0 = new Defer( true ),
 obj0promise
 	.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
 	.done(function() { log( 'done again' ); })
-	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); });
+	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); })
+	.always(function( a ) { log( 'obj0 : ' + a + ' : always ' ); });
 
 var obj1 = new Defer(),
 	obj1promise = obj1.promise();
