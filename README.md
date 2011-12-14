@@ -2,6 +2,8 @@
 
 Defactor allows creating deferred objects with a many-to-many relationship between queues and triggers.
 By creating this type of event map there shouldn't be a need for callback insanity.
+The idea is to create new deferreds for different call types, then return new instances.
+By doing this the end user's API can be fully chained.
 Here's an example:
 
 ```javascript
@@ -13,10 +15,10 @@ var defer = defactor()
     .create();
 
 // create an instance of the new deferred
-var myDef0 = new defer();  // or just `defer()`
+var myDef = new defer();  // or just `defer()`
 
 // queue up functions to complete
-myDef0.done(function() {
+myDef.done(function() {
         console.log( 'done' );
     })
     .fail(function() {
@@ -26,31 +28,14 @@ myDef0.done(function() {
         console.log( 'always' );
     });
 
-myDef0.resolve();    // LOG: "done"; "always"
-```
-
-The idea is to create new deferreds for different call types, then return new instances.
-By doing this the end user's API can be fully chained.
-Here's an example of what jQuery's `on()` method could look like using this technique:
-
-```javascript
-$( '.selector' )
-    .on( 'click' )            // return a new deferred
-        .exec( fn )           // execute the function once complete
-        .ajax( {} )           // make an AJAX call, which will also return a new deferred
-            .success( fn )    // in case of success
-            .fail( fn )       // in case of failure
-            .completed( fn )  // always
-            .end()            // return to previous context
-        .animate( {} )        // animate the clicked element
-            .exec( fn )       // execute the function once animation is complete
+myDef.resolve();    // LOG: "done"; "always"
 ```
 
 ## Features
 
 * `add()`: adds a new trigger/queue to the stack
 
-* `addAlways()`: add queue that will always be fired, and fired first
+* `always()`: add queue that will always be fired, and fired first
 
 * Queues can be passed context and/or an array of arguments
 
@@ -62,4 +47,39 @@ $( '.selector' )
 
 * (v0.1.1) Make queue execution non-blocking
 
-* (v0.1.2) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
+* (v0.1.2) Set default queue persistance by passing `true`/`false` to `defactor()`
+
+* (v0.1.3) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
+
+* (v0.2.0) The final argument to `add()` or `always()` can be a function, which will execute when called and pass any arguments. Example:
+
+```javascript
+var onEvent = defactor()
+    .add( 'debug', 'trigger' )
+    .always( 'ajax', function( opts ) {  // make an ajax call
+        var ctx = this,
+            call = $.ajax( opts );
+        call.end = function() {
+            return ctx;
+        };
+        return call;
+    });
+
+var e = new onEvent( true )
+    // ajax returns a new deferred context
+    .ajax({
+        // options
+    })
+        .success( fn )  // if call succeeds
+        .fail( fn )     // if call fails
+        .end()          // return to previous context
+    .debug(function() {
+        // log some stuff
+    });
+
+e.trigger();
+```
+
+## Known Issues
+
+* If a deferred is created with only `always()` queues, then there is no way to trigger them.
