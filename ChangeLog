@@ -1,3 +1,12 @@
+2011.12.14, Version 0.1.0, 28d892c
+----------------------------------
+
+* addWith() has been removed from API
+
+* All triggers can now be passed context and/or an argument array
+
+* Internally: map/data have been re-structured
+
 2011.12.12, Version 0.0.5, 37bbfc6
 ----------------------------------
 
