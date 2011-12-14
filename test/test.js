@@ -6,26 +6,28 @@ var Defer = defactor( true )
 	.add( 'resolve', 'done' )
 	.add( 'sometimes', 'done' )
 	.add( 'reject', 'fail' )
-	.addWith( 'resolveWith', 'done' )
-	.addAlways( 'always' )
 	.create();
 
 var obj0 = new Defer( true ),
 	obj0promise = obj0.promise();
 
-obj0promise.done(function( a ) { log( 'obj0 : ' + a + ' : done', this.hi ); })
-	.always(function( a ) { log( 'obj0 : ' + a + ' : always' ); });
+obj0promise
+	.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
+	.done(function() { log( 'done again' ); })
+	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); });
 
 var obj1 = new Defer(),
 	obj1promise = obj1.promise();
 
-obj1promise.done(function( a ) { log( 'obj1 : ' + a + ' : done' ); })
-	.always(function( a ) { log( 'obj1 : ' + a + ' : always' ); });
+obj1promise
+	.done(function( a ) { log( 'obj1 : ' + a + ' : done' ); })
+	.done(function() { log( 'done again' ); })
+	.fail(function( a ) { log( 'obj1 : ' + a + ' : fail' ); });
 
 
-obj1.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]);
+obj1.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]).reject([ 'reject' ]);
 log( '---------' );
-obj0.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]).resolveWith({ hi : 'With' }, ['resolveWith']);
+obj0.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]).reject([ 'reject' ]);
 log( '---------' );
 log( obj0 );
 log( '---------' );
