@@ -9,8 +9,6 @@ Here's an example:
 var defer = defactor()
     .add( 'resolve', 'done' )
     .add( 'reject', 'fail' )
-    .addWith( 'resolveWith', 'done' )
-    .addWith( 'rejectWith', 'fail' )
     .addAlways( 'always' )
     .create();
 
@@ -33,7 +31,7 @@ myDef0.resolve();    // LOG: "done"; "always"
 
 The idea is to create new deferreds for different call types, then return new instances.
 By doing this the end user's API can be fully chained.
-Here's an example of what jQuery's `on` method could look like:
+Here's an example of what jQuery's `on()` method could look like using this technique:
 
 ```javascript
 $( '.selector' )
@@ -52,17 +50,15 @@ $( '.selector' )
 
 * `add()`: adds a new trigger/queue to the stack
 
-* `addWith()`: add new trigger/queue, where trigger expects a context arguments
-
 * `addAlways()`: add queue that will always be fired, and fired first
+
+* Queues can be passed context and/or an array of arguments
 
 * All generated deferreds have a `promise()` method that will return a promise object
 
 * Events will persist after triggered if `true` is passed when instantiating the deferred
 
 ## Roadmap
-
-* (v0.1.0) Cleanup of map/data model.
 
 * (v0.1.1) Make queue execution non-blocking
 
