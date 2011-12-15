@@ -11,7 +11,8 @@ Here's an example:
 var defer = defactor()
     .add( 'resolve', 'done' )
     .add( 'reject', 'fail' )
-    .addAlways( 'always' )
+	.add( 'resolve', 'always' )
+	.add( 'reject', 'always' )
     .create();
 
 // create an instance of the new deferred
@@ -31,11 +32,9 @@ myDef.done(function() {
 myDef.resolve();    // LOG: "done"; "always"
 ```
 
-## Features
+## Features/API
 
 * `add()`: adds a new trigger/queue to the stack
-
-* `always()`: add queue that will always be fired, and fired first
 
 * Queues can be passed context and/or an array of arguments
 
@@ -51,12 +50,12 @@ myDef.resolve();    // LOG: "done"; "always"
 
 * (v0.1.3) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
 
-* (v0.2.0) The final argument to `add()` or `always()` can be a function, which will execute when called and pass any arguments. Example:
+* (v0.2.0) The final argument to `add()` can be a function, which will execute when called and pass any arguments. Example:
 
 ```javascript
 var onEvent = defactor()
-    .add( 'debug', 'trigger' )
-    .always( 'ajax', function( opts ) {  // make an ajax call
+    .add( 'trigger', 'debug' )
+    .add( 'trigger', 'ajax', function( opts ) {  // make an ajax call
         var ctx = this,
             call = $.ajax( opts );
         call.end = function() {
@@ -79,7 +78,3 @@ var e = new onEvent( true )
 
 e.trigger();
 ```
-
-## Known Issues
-
-* If a deferred is created with only `always()` queues, then there is no way to trigger them.
