@@ -19,8 +19,8 @@ var defer = defactor()
 var myDef = new defer();  // or just `defer()`
 
 // queue up functions to complete
-myDef.done(function() {
-        console.log( 'done' );
+myDef.done(function( arg ) {
+        console.log( 'done:' + arg + ':' + this.ctx );
     })
     .fail(function() {
         console.log( 'fail' );
@@ -29,12 +29,18 @@ myDef.done(function() {
         console.log( 'always' );
     });
 
-myDef.resolve();    // LOG: "done"; "always"
+myDef.resolve( 'now', {
+    ctx : 'here'
+});    // LOG: "done:now:here"; "always"
 ```
 
 ## Features/API
 
-* `add()`: adds a new trigger/queue to the stack
+* `defactor( [clear] )`: initialize new defactor object. If `[clear] === true` then default behavior is to clear queue after trigger.
+
+* `.add( trigger, queue )`: adds a new trigger/queue to the stack.
+
+* `.create()`: generates new deferred from the defactor object.
 
 * Queues can be passed context and/or an array of arguments
 
@@ -45,8 +51,6 @@ myDef.resolve();    // LOG: "done"; "always"
 * Trigger execution is non-blocking
 
 ## Roadmap
-
-* (v0.1.2) Set default queue persistance by passing `true`/`false` to `defactor()`
 
 * (v0.1.3) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
 

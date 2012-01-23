@@ -8,12 +8,12 @@ var Defer = defactor( true )
 	.add( 'reject', 'fail' )
 	.create();
 
-var obj0 = new Defer( true ),
+var obj0 = new Defer( false ),
 	obj0promise = obj0.promise();
 
 obj0promise
 	.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
-	.done(function() { log( 'obj0 : ' + this.hi || "nothing here" ); })
+	.done(function( a ) { log( 'obj0 : ' + a + ' : ' + ( this.hi || "nothing here" )); })
 	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); });
 
 var obj1 = new Defer()
