@@ -42,9 +42,9 @@ myDef.resolve();    // LOG: "done"; "always"
 
 * Events will persist after triggered if `true` is passed when instantiating the deferred
 
-## Roadmap
+* Trigger execution is non-blocking
 
-* (v0.1.1) Make queue execution non-blocking
+## Roadmap
 
 * (v0.1.2) Set default queue persistance by passing `true`/`false` to `defactor()`
 

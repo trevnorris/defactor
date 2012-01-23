@@ -1,3 +1,11 @@
+2012.01.23, Version 0.1.1, 2beceba
+----------------------------------
+
+* triggers now run non-blocking, but not in guaranteed order
+
+* always() has been removed from API
+
+
 2011.12.14, Version 0.1.0, 28d892c
 ----------------------------------
 
