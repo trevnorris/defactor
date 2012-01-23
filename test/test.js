@@ -13,17 +13,20 @@ var obj0 = new Defer( true ),
 
 obj0promise
 	.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
-	.done(function() { log( this.hi || "nothing here" ); })
+	.done(function() { log( 'obj0 : ' + this.hi || "nothing here" ); })
 	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); });
 
 var obj1 = new Defer()
 	.done(function() { log( 'obj1 : done' ); })
 	.fail(function() { log( 'obj1 : fail' ); });
 
-obj0.resolve([ 'resolve' ]).sometimes([ 'sometimes' ]).reject([ 'reject' ]);
-log( '---------' );
-obj0.resolve({ hi : 'me' }).resolve([ 'resolve' ]).resolve({ hi : 'me' },[ 'resolve' ]);
-log( '---------' );
-obj1.resolve().reject();
+obj1.resolve()
+	.reject();
+obj0.resolve([ 'resolve' ])
+	.sometimes([ 'sometimes' ])
+	.reject([ 'reject' ]);
+obj0.resolve({ hi : 'me' })
+	.resolve([ 'resolve' ])
+	.resolve({ hi : 'me' },[ 'resolve' ]);
 
 return;
