@@ -1,10 +1,18 @@
+2012.01.23, Version 0.1.2, add5399
+----------------------------------
+
+* Pass boolean to defactor() or generated deferred to set queue clear behavior
+	* If create() with defactor( true ) then can pass false to deferred to
+	override the parameter for a single instance of the deferred
+
+* Default behavior is to persist queue after trigger
+
 2012.01.23, Version 0.1.1, 2beceba
 ----------------------------------
 
 * triggers now run non-blocking, but not in guaranteed order
 
 * always() has been removed from API
-
 
 2011.12.14, Version 0.1.0, 28d892c
 ----------------------------------
