@@ -52,7 +52,9 @@ myDef.resolve( 'now', {
 
 ## Roadmap
 
-* (v0.1.3) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
+* (v0.1.3) Pass in a list of queues in an array or space delimited string to `add()`
+
+* (v0.1.4) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
 
 * (v0.2.0) The final argument to `add()` can be a function, which will execute when called and pass any arguments. Example:
 
