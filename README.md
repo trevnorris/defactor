@@ -14,7 +14,7 @@ var defer = defactor()
     .create();
 
 // OR use the alternate syntax by passing an object
-// (note this will add all triggers/queues then create() when complete
+// (note: this will add all triggers/queues then create() when complete)
 var defer = defactor({
     resolve : 'done always',
     reject : 'fail always'
@@ -56,8 +56,6 @@ myDef.resolve( 'now', {
 * Trigger execution is non-blocking
 
 ## Roadmap
-
-* (v0.1.4) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
 
 * (v0.2.0) The final argument to `add()` can be a function, which will execute when called and pass any arguments. Example:
 
