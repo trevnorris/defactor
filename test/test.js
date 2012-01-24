@@ -2,22 +2,25 @@ var defactor = require( '../lib/defactor.js' ).defactor
 	log = console.log;
 
 
-var Defer = defactor( true )
-	.add( 'resolve', 'done always' )
-	.add( 'sometimes', 'done always' )
-	.add( 'reject', 'fail always' )
-	.create();
+var Defer = defactor({
+		'resolve' : 'done always',
+		'sometimes' : 'done always',
+		'reject' : 'fail always'
+	});
+	//.add( 'resolve', 'done always' )
+	//.add( 'sometimes', 'done always' )
+	//.add( 'reject', 'fail always' )
+	//.create();
 
-var obj0 = new Defer( false ),
+var obj0 = new Defer(),
 	obj0promise = obj0.promise();
 
 obj0promise
-	.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
 	.done(function( a ) { log( 'obj0 : ' + a + ' : ' + ( this.hi || "nothing here" )); })
 	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); })
 	.always(function() { log( 'obj0 : always' ); });
 
-var obj1 = new Defer()
+var obj1 = new Defer( true )
 	.done(function() { log( 'obj1 : done' ); })
 	.fail(function() { log( 'obj1 : fail' ); })
 	.always(function() { log( 'obj1 : always' ); });
