@@ -9,11 +9,16 @@ Here's an example:
 ```javascript
 // generate a new deferred object with custom event triggers and function queues
 var defer = defactor()
-    .add( 'resolve', 'done' )
-    .add( 'reject', 'fail' )
-	.add( 'resolve', 'always' )
-	.add( 'reject', 'always' )
+    .add( 'resolve', 'done always' )
+    .add( 'reject', 'fail always' )
     .create();
+
+// OR use the alternate syntax by passing an object
+// (note this will add all triggers/queues then create() when complete
+var defer = defactor({
+    resolve : 'done always',
+    reject : 'fail always'
+});
 
 // create an instance of the new deferred
 var myDef = new defer();  // or just `defer()`
@@ -36,9 +41,9 @@ myDef.resolve( 'now', {
 
 ## Features/API
 
-* `defactor( [clear] )`: initialize new defactor object. If `[clear] === true` then default behavior is to clear queue after trigger.
+* `defactor( [clear],[map] )`: initialize new defactor object. If `clear === true` then default behavior is to clear queue after trigger. `map` will accept an object of triggers : queues then create the deferred automatically.
 
-* `.add( trigger, queue )`: adds a new trigger/queue to the stack.
+* `.add( trigger, queue )`: adds a new trigger/queue to the stack. `queue` can be a space seperated string, or an array.
 
 * `.create()`: generates new deferred from the defactor object.
 
@@ -46,13 +51,11 @@ myDef.resolve( 'now', {
 
 * All generated deferreds have a `promise()` method that will return a promise object
 
-* Events will persist after triggered if `true` is passed when instantiating the deferred
+* Events will be cleared after triggering if `true` is passed when instantiating the deferred
 
 * Trigger execution is non-blocking
 
 ## Roadmap
-
-* (v0.1.3) Pass in a list of queues in an array or space delimited string to `add()`
 
 * (v0.1.4) Add `progress( fn )` method to deferreds. Will execute fn when any object instantiated from the deferred triggers.
 
