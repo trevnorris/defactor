@@ -1,3 +1,12 @@
+2012.01.24, Version 0.1.3, bbc1c54
+----------------------------------
+
+* defactor() will now accept an object, which will add all triggers/queues
+then create the deferred
+
+* .add() can now be passed an array or space seperated string of queues, which
+will all be added against the trigger
+
 2012.01.23, Version 0.1.2, add5399
 ----------------------------------
 
