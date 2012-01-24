@@ -3,9 +3,9 @@ var defactor = require( '../lib/defactor.js' ).defactor
 
 
 var Defer = defactor( true )
-	.add( 'resolve', 'done' )
-	.add( 'sometimes', 'done' )
-	.add( 'reject', 'fail' )
+	.add( 'resolve', 'done always' )
+	.add( 'sometimes', 'done always' )
+	.add( 'reject', 'fail always' )
 	.create();
 
 var obj0 = new Defer( false ),
@@ -14,11 +14,13 @@ var obj0 = new Defer( false ),
 obj0promise
 	.done(function( a ) { log( 'obj0 : ' + a + ' : done' ); })
 	.done(function( a ) { log( 'obj0 : ' + a + ' : ' + ( this.hi || "nothing here" )); })
-	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); });
+	.fail(function( a ) { log( 'obj0 : ' + a + ' : fail' ); })
+	.always(function() { log( 'obj0 : always' ); });
 
 var obj1 = new Defer()
 	.done(function() { log( 'obj1 : done' ); })
-	.fail(function() { log( 'obj1 : fail' ); });
+	.fail(function() { log( 'obj1 : fail' ); })
+	.always(function() { log( 'obj1 : always' ); });
 
 obj1.resolve()
 	.reject();
