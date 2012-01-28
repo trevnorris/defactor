@@ -43,7 +43,7 @@ myDef.resolve( 'now', {
 
 * `defactor( [clear],[map] )`: initialize new defactor object. If `clear === true` then default behavior is to clear queue after trigger. `map` will accept an object of triggers : queues then create the deferred automatically.
 
-* `.add( trigger, queue )`: adds a new trigger/queue to the stack. `queue` can be a space seperated string, or an array.
+* `.add( trigger, queue )`: adds a new trigger/queue to the stack. `queue` can be a space separated string, or an array.
 
 * `.create()`: generates new deferred from the defactor object.
 
@@ -52,8 +52,6 @@ myDef.resolve( 'now', {
 * All generated deferreds have a `promise()` method that will return a promise object
 
 * Events will be cleared after triggering if `true` is passed when instantiating the deferred
-
-* Trigger execution is non-blocking
 
 ## Roadmap
 
@@ -85,3 +83,4 @@ var e = new onEvent( true )
 
 e.trigger();
 ```
+* (v0.3.0) Asynchronous queue manager so functions in queues are non-blocking, but are still executed in order; and chaining will also be executed in order.
