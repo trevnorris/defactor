@@ -1,11 +1,19 @@
-2012.01.27, Version 0.1.3.1, 583ecad
-------------------------------------
+2012.08.06, Version 0.1.4
+-------------------------
+
+* Properly export to module.exports if detected Node.js
+
+* Remove commit id from ChangeLog
+
+
+2012.01.27, Version 0.1.3-1
+---------------------------
 
 * Removed asynchronous queue calls, implementation was too simple and it broke
 proper chaining
 
-2012.01.24, Version 0.1.3, bbc1c54
-----------------------------------
+2012.01.24, Version 0.1.3
+-------------------------
 
 * defactor() will now accept an object, which will add all triggers/queues
 then create the deferred
@@ -13,8 +21,8 @@ then create the deferred
 * .add() can now be passed an array or space seperated string of queues, which
 will all be added against the trigger
 
-2012.01.23, Version 0.1.2, add5399
-----------------------------------
+2012.01.23, Version 0.1.2
+-------------------------
 
 * Pass boolean to defactor() or generated deferred to set queue clear behavior
 	* If create() with defactor( true ) then can pass false to deferred to
@@ -22,15 +30,15 @@ will all be added against the trigger
 
 * Default behavior is to persist queue after trigger
 
-2012.01.23, Version 0.1.1, 2beceba
-----------------------------------
+2012.01.23, Version 0.1.1
+-------------------------
 
 * triggers now run non-blocking, but not in guaranteed order
 
 * always() has been removed from API
 
-2011.12.14, Version 0.1.0, 28d892c
-----------------------------------
+2011.12.14, Version 0.1.0
+-------------------------
 
 * addWith() has been removed from API
 
@@ -38,18 +46,18 @@ will all be added against the trigger
 
 * Internally: map/data have been re-structured
 
-2011.12.12, Version 0.0.5, 37bbfc6
-----------------------------------
+2011.12.12, Version 0.0.5
+-------------------------
 
 * Create queues that will always fire using addAlways()
 
-2011.12.09, Version 0.0.4, 29ad8e4
-----------------------------------
+2011.12.09, Version 0.0.4
+-------------------------
 
 * Fix bug where clearQueue was actually clearing the trigger/queue map
 
-2011.12.09, Version 0.0.3, 440af8b
-----------------------------------
+2011.12.09, Version 0.0.3
+-------------------------
 
 * Defactor:
 	* guid is now referenced by _key
@@ -61,13 +69,13 @@ will all be added against the trigger
 
 * Queue persistance argument is now passed to generated deferred
 
-2011.12.09, Version 0.0.2, 02d3b01
-----------------------------------
+2011.12.09, Version 0.0.2
+-------------------------
 
 * Defactor.fn.add( trigger, queue ): order of arguments has been swapped
 
-2011.12.09, Version 0.0.1, f95ea0c
----------------------------
+2011.12.09, Version 0.0.1
+-------------------------
 
 * Defactor( [persist] ):
 	* Accepts boolean argument to determine whether queue is cleared or
