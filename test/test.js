@@ -1,4 +1,4 @@
-var defactor = require( '../lib/defactor.js' ).defactor
+var defactor = require( '../lib/defactor.js' ),
 	log = console.log;
 
 
