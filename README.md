@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/trevnorris/defactor.png)](http://travis-ci.org/trevnorris/defactor)
 # Defactor - A Deferred Factory Object
 
 Defactor allows creating deferred objects with a many-to-many relationship between queues and triggers.
